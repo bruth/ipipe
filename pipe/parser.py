@@ -24,18 +24,9 @@ class Parser(object):
 
 
 class FileParser(Parser):
-    def __init__(self, iterable, delimiter='\t', skiplines=0):
+    def __init__(self, iterable, delimiter='\t'):
         self.iterable = iterable
         self.delimiter = delimiter
-        self.skiplines = skiplines
-        self.skipped = None
-
-    def next(self):
-        if self.skipped is None:
-            self.skipped = []
-            for _ in xrange(self.skiplines):
-                self.skipped.append(next(self.iterable))
-        return super(FileParser, self).next()
 
     def parse(self, line):
         row = line.strip().split(self.delimiter)
