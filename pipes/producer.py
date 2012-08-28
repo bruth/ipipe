@@ -23,10 +23,7 @@ class Producer(object):
 
         # Create namedtuple class for this class
         name = '{}record'.format(self.__class__.__name__.lower())
-        self.recordclass = namedtuple(name, fields)
-
-    def __iter__(self):
-        return self
+        self.recordclass = namedtuple(name, [f for f, i in fields])
 
     def next(self):
         return self.emit(next(self.iterable))
