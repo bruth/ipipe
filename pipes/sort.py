@@ -1,11 +1,11 @@
-class Sorter(object):
+from .iterbase import Iterable
+
+
+class Sorter(Iterable):
     def __init__(self, iterable, key=None):
         self.iterable = iterable
         self.key = key
         self.sorted = None
-
-    def __iter__(self):
-        return self
 
     def next(self):
         if self.sorted is None:

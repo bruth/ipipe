@@ -1,12 +1,12 @@
-class FileReader(object):
+from .iterbase import Iterable
+
+
+class FileReader(Iterable):
     "File reader that forces complete lines to be read."
     def __init__(self, iterable, skiplines=0):
         self.iterable = iterable
         self.skiplines = skiplines
         self.skipped = None
-
-    def __iter__(self):
-        return self
 
     def next(self):
         if self.skipped is None:
@@ -16,7 +16,7 @@ class FileReader(object):
         return next(self.iterable)
 
 
-class CursorReader(object):
+class CursorReader(Iterable):
     "Reader that wraps a database cursor."
     def __init__(self, cursor, batchsize=100):
         self.cursor = cursor
@@ -24,10 +24,8 @@ class CursorReader(object):
         self.batch = None
         self._iter = None
 
-    def __iter__(self):
-        return self
-
     def _result_iter(self):
+        "Lazily populates the iterable."
         while True:
             if not self.batch:
                 self.batch = self.cursor.fetchmany(self.batchsize)

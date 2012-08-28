@@ -1,13 +1,9 @@
+from .iterbase import Iterable
+
 noop = lambda x: x
 
 
-class Parser(object):
-    def __init__(self, iterable):
-        self.iterable = iterable
-
-    def __iter__(self):
-        return self
-
+class Parser(Iterable):
     def next(self):
         return self.parse(next(self.iterable))
 

@@ -1,7 +1,8 @@
 from collections import namedtuple
+from .iterbase import Iterable
 
 
-class Producer(object):
+class Producer(Iterable):
     """An iterator class that wraps an iterable. Each `line` will be mapped
     converted to a record object for downstream processing.
 
