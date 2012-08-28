@@ -65,11 +65,11 @@ from pipes import FileParser, Parser, FileReader, CursorReader, Sorter, compose
 # Create a file reader which takes a file handler and a file parser. This
 # will produce an iterable that emits a line per iteration (note the file
 # file object behaves this way already).
-freader = FileReader(open('data.txt'))
+freader = FileReader(open('data.txt'), skiplines=1)
 
 # Create a file parser that understands general properties about text files
-# to enable parsing. This includes column delimiters, skipping lines, etc.
-fparser = FileParser(freader, delimiter='\t', skiplines=1)
+# to enable parsing.
+fparser = FileParser(freader, delimiter='\t')
 
 # Define a producer which takes a reader and specifies a list of field names
 # corresponding to those emitted from the reader.
