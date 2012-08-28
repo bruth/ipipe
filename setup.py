@@ -8,14 +8,14 @@ kwargs = {
     'test_suite': 'tests',
 
     # Metadata
-    'name': 'pipe',
-    'version': __import__('pipe').get_version(),
+    'name': 'pipes',
+    'version': __import__('pipes').get_version(),
     'author': 'Byron Ruth',
     'author_email': 'b@devel.io',
     'description': 'Iterator-based utilities for building data processing pipelines',
     'license': 'BSD',
     'keywords': 'pipeline data processing iterator merge compose',
-    'url': 'https://github.com/bruth/pipe/',
+    'url': 'https://github.com/bruth/pipes/',
     'classifiers': [
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: BSD License',
