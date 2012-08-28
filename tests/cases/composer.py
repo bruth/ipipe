@@ -4,9 +4,9 @@ from pipes import compose
 
 __all__ = ['ComposerTestCase']
 
-SOURCE1 = os.path.join(os.path.dirname(__file__), '../../data/source1-sorted.txt')
-SOURCE2 = os.path.join(os.path.dirname(__file__), '../../data/source2-sorted.txt')
-SOURCE3 = os.path.join(os.path.dirname(__file__), '../../data/source3-sorted.txt')
+SOURCE1 = os.path.join(os.path.dirname(__file__), '../data/source1-sorted.txt')
+SOURCE2 = os.path.join(os.path.dirname(__file__), '../data/source2-sorted.txt')
+SOURCE3 = os.path.join(os.path.dirname(__file__), '../data/source3-sorted.txt')
 
 
 class ComposerTestCase(unittest.TestCase):
