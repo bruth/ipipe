@@ -20,7 +20,7 @@ class Parser(object):
                 output.extend(parsed)
             else:
                 output.append(parsed)
-        return parsed
+        return output
 
 
 class FileParser(Parser):
