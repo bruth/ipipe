@@ -60,7 +60,7 @@ data and merging ordered sets of data.
 ## Example
 
 ```python
-from pipes import FileParser, Parser, FileReader, CursorReader, Sorter, compose
+from ipipe import FileParser, Parser, FileReader, CursorReader, Sorter, compose
 
 # Create a file reader which takes a file handler and a file parser. This
 # will produce an iterable that emits a line per iteration (note the file

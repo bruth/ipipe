@@ -1,6 +1,6 @@
 import os
 import unittest
-from pipes import FileReader, FileParser, Producer, Sorter
+from ipipe import FileReader, FileParser, Producer, Sorter
 
 __all__ = ['SorterTestCase']
 

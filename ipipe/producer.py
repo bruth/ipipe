@@ -18,16 +18,21 @@ class Producer(Iterable):
     """
     def __init__(self, iterable, fields):
         self.iterable = iterable
-        if not isinstance(fields[0], (list, tuple)):
-            fields = [(f, i) for i, f in enumerate(fields)]
         self.fields = fields
 
         # Create namedtuple class for this class
         name = '{}record'.format(self.__class__.__name__.lower())
-        self.recordclass = namedtuple(name, [f for f, i in fields])
+        self.recordclass = namedtuple(name, fields)
 
     def next(self):
-        return self.emit(next(self.iterable))
+        return self.recordclass(*next(self.iterable))
 
-    def emit(self, row):
-        return self.recordclass(*[row[i] for f, i in self.fields])
+
+class LineProducer(Iterable):
+    "Delimited-line producer."
+    def __init__(self, iterable, delimiter='\t'):
+        self.iterable = iterable
+        self.delimiter = delimiter
+
+    def next(self):
+        return self.delimiter.join(next(self.iterable)) + '\n'

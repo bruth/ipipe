@@ -1,6 +1,6 @@
 import unittest
 from cStringIO import StringIO
-from pipes import Parser, FileParser
+from ipipe import Parser, FileParser
 
 __all__ = ['ParserTestCase']
 

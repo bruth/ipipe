@@ -31,18 +31,18 @@ def compose(iterables, identity, merge, relative=False):
         for i, itr in enumerate(iterables):
             # Fetch from the pending cache if exists, otherwise proceed
             if i in pending:
-                rid, record = pending.pop(i)
+                rident, record = pending.pop(i)
             else:
                 try:
                     record = itr.next()
-                    rid = identity(record)
+                    rident = identity(record)
                 except StopIteration:
                     continue
 
-            if lowmark is None or rid < pending[lowmark][0]:
+            if lowmark is None or rident < pending[lowmark][0]:
                 lowmark = i
             # If the identities match, merge the two records together
-            elif rid == pending[lowmark][0]:
+            elif rident == pending[lowmark][0]:
                 changed = True
                 out = merge(pending[lowmark][1], record)
                 # Assume in-place merge
@@ -51,13 +51,13 @@ def compose(iterables, identity, merge, relative=False):
                 continue
 
             # Reached only when the record has not been changed
-            pending[i] = [rid, record]
+            pending[i] = [rident, record]
 
         if lowmark is None:
             raise StopIteration
 
         # Remove the lowmark from the pending
-        rid, record = pending.pop(lowmark)
+        rident, record = pending.pop(lowmark)
 
         # If `relative` is true, return the yield status of the record
         # as well. 0 denotes an update to the source record, -1 denotes

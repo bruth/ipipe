@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from .iterbase import Iterable
 
 
@@ -18,21 +19,26 @@ class FileReader(Iterable):
 
 class CursorReader(Iterable):
     "Reader that wraps a database cursor."
-    def __init__(self, cursor, batchsize=100):
+    def __init__(self, cursor, batchsize=100, keys=None):
         self.cursor = cursor
         self.batchsize = batchsize
         self.batch = None
+        self.keys = None
         self._iter = None
 
     def _result_iter(self):
         "Lazily populates the iterable."
+        keys = self.keys
         while True:
             if not self.batch:
                 self.batch = self.cursor.fetchmany(self.batchsize)
                 if not self.batch:
                     raise StopIteration
             for row in self.batch:
-                yield row
+                if keys is None:
+                    yield row
+                else:
+                    yield OrderedDict(zip(keys, row))
 
     def next(self):
         if self._iter is None:

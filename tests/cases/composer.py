@@ -1,6 +1,6 @@
 import os
 import unittest
-from pipes import compose
+from ipipe import compose
 
 __all__ = ['ComposerTestCase']
 
